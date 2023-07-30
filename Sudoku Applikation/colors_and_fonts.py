@@ -1,0 +1,8 @@
+import cv2
+
+font = cv2.FONT_HERSHEY_SIMPLEX
+WHITE = (255, 255, 255)
+WHITE_ = 255
+RED = (0, 0, 255)
+GREEN = (0, 255, 0)
+YELLOW = (0, 255, 255)

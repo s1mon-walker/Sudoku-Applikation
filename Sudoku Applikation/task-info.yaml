@@ -1,0 +1,1543 @@
+type: theory
+files:
+- name: assets/icon/abbts.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/about.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/equal.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/excel.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/scale.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/video.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/camera.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/chrome.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/equal_.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/omedit.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/python.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/browser.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/checked.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/circuit.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/formula.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/quartus.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/zoom_in.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/settings.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/_weblinks.txt
+  visible: true
+  text: |
+    http://www.iconarchive.com/
+
+    http://www.iconarchive.com/show/simply-styled-icons-by-dakirby309/Microsoft-Excel-2013-icon.html
+  learner_created: false
+- name: assets/icon/connected.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/unchecked.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/arrow_left.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/calculator.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/data_table.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/arrow_right.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/grab_screen.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/disconnected.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/text_formula.ico
+  visible: true
+  learner_created: false
+- name: assets/icon/control_panel.ico
+  visible: true
+  learner_created: false
+- name: assets/image/image.png
+  visible: true
+  learner_created: false
+- name: style.py
+  visible: true
+  text: |
+    from PyQt5.QtGui import QPalette, QColor, QFont
+
+    def set_style(app):
+        app.setStyle(Style.style())
+        app.setPalette(Style())
+        app.setStyleSheet(Style.style_sheet())
+        app.setFont(Style.set_font())
+
+
+    class Style(QPalette):
+        style_dark = True
+
+        def __init__(self, *args):
+            super().__init__(*args)
+            if Style.style_dark:
+                # https://github.com/gmarull/qtmodern
+                self.setColor(QPalette.WindowText, QColor(255, 255, 255))
+                self.setColor(QPalette.Button, QColor(53, 53, 53))
+                self.setColor(QPalette.Light, QColor(255, 255, 255))
+                self.setColor(QPalette.Midlight, QColor(90, 90, 90))
+                self.setColor(QPalette.Dark, QColor(35, 35, 35))
+                self.setColor(QPalette.Text, QColor(255, 255, 255))
+                self.setColor(QPalette.BrightText, QColor(255, 255, 255))
+                self.setColor(QPalette.ButtonText, QColor(255, 255, 255))
+                self.setColor(QPalette.Base, QColor(65, 65, 130))  # !
+                self.setColor(QPalette.Window, QColor(53, 53, 53))
+                self.setColor(QPalette.Shadow, QColor(20, 20, 20))
+                self.setColor(QPalette.Highlight, QColor(42, 130, 218))
+                self.setColor(QPalette.HighlightedText, QColor(255, 255, 255))
+                self.setColor(QPalette.Link, QColor(56, 252, 196))
+                self.setColor(QPalette.AlternateBase, QColor(66, 66, 66))
+                self.setColor(QPalette.ToolTipBase, QColor(53, 53, 53))
+                self.setColor(QPalette.ToolTipText, QColor(255, 255, 255))
+
+                # disabled
+                self.setColor(QPalette.Disabled, QPalette.WindowText, QColor(127, 127, 127))
+                self.setColor(QPalette.Disabled, QPalette.Text, QColor(127, 127, 127))
+                self.setColor(QPalette.Disabled, QPalette.ButtonText, QColor(127, 127, 127))
+                self.setColor(QPalette.Disabled, QPalette.Highlight, QColor(80, 80, 80))
+                self.setColor(QPalette.Disabled, QPalette.HighlightedText, QColor(127, 127, 127))
+
+        @staticmethod
+        def style_sheet():
+            if Style.style_dark:
+                return 'QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }'
+            else:
+                return ''
+
+        @staticmethod
+        def style():
+            return 'Fusion'
+
+        @staticmethod
+        def set_font():
+            font = QFont()
+            font.setPointSize(9)
+            font.setBold(True)
+            font.setWeight(40)
+            return font
+  learner_created: false
+- name: ui/main_ui.py
+  visible: true
+  text: |
+    # -*- coding: utf-8 -*-
+
+    # Form implementation generated from reading ui file 'ui\main_ui.ui'
+    #
+    # Created by: PyQt5 UI code generator 5.12
+    #
+    # WARNING! All changes made in this file will be lost!
+
+    from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+    class Ui_main_ui(object):
+        def setupUi(self, main_ui):
+            main_ui.setObjectName("main_ui")
+            main_ui.resize(800, 600)
+            self.central_widget = QtWidgets.QWidget(main_ui)
+            self.central_widget.setObjectName("central_widget")
+            self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.central_widget)
+            self.horizontalLayout_2.setContentsMargins(11, 11, 11, 11)
+            self.horizontalLayout_2.setSpacing(6)
+            self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+            self.horizontalLayout = QtWidgets.QHBoxLayout()
+            self.horizontalLayout.setSpacing(6)
+            self.horizontalLayout.setObjectName("horizontalLayout")
+            self.verticalLayout = QtWidgets.QVBoxLayout()
+            self.verticalLayout.setSpacing(6)
+            self.verticalLayout.setObjectName("verticalLayout")
+            self.lbl_pixmap = QtWidgets.QLabel(self.central_widget)
+            self.lbl_pixmap.setText("")
+            self.lbl_pixmap.setAlignment(QtCore.Qt.AlignCenter)
+            self.lbl_pixmap.setObjectName("lbl_pixmap")
+            self.verticalLayout.addWidget(self.lbl_pixmap)
+            self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+            self.horizontalLayout_3.setSpacing(6)
+            self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+            spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+            self.horizontalLayout_3.addItem(spacerItem)
+            self.sb_choice = QtWidgets.QSpinBox(self.central_widget)
+            self.sb_choice.setObjectName("sb_choice")
+            self.horizontalLayout_3.addWidget(self.sb_choice)
+            self.cb_autoscale = QtWidgets.QCheckBox(self.central_widget)
+            self.cb_autoscale.setChecked(False)
+            self.cb_autoscale.setObjectName("cb_autoscale")
+            self.horizontalLayout_3.addWidget(self.cb_autoscale)
+            self.btn_connect = QtWidgets.QPushButton(self.central_widget)
+            self.btn_connect.setObjectName("btn_connect")
+            self.horizontalLayout_3.addWidget(self.btn_connect)
+            spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+            self.horizontalLayout_3.addItem(spacerItem1)
+            self.verticalLayout.addLayout(self.horizontalLayout_3)
+            self.verticalLayout.setStretch(0, 1)
+            self.horizontalLayout.addLayout(self.verticalLayout)
+            self.horizontalLayout_2.addLayout(self.horizontalLayout)
+            self.settings = Settings(self.central_widget)
+            self.settings.setMinimumSize(QtCore.QSize(330, 0))
+            self.settings.setObjectName("settings")
+            self.horizontalLayout_2.addWidget(self.settings)
+            self.horizontalLayout_2.setStretch(0, 1)
+            main_ui.setCentralWidget(self.central_widget)
+
+            self.retranslateUi(main_ui)
+            QtCore.QMetaObject.connectSlotsByName(main_ui)
+
+        def retranslateUi(self, main_ui):
+            _translate = QtCore.QCoreApplication.translate
+            main_ui.setWindowTitle(_translate("main_ui", "windowTitle"))
+            self.cb_autoscale.setText(_translate("main_ui", "Autoskalierung"))
+            self.btn_connect.setText(_translate("main_ui", "CONNECT"))
+
+
+    from settings.settings import Settings
+  learner_created: false
+- name: ui/main_ui.ui
+  visible: true
+  text: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <ui version="4.0">
+     <class>main_ui</class>
+     <widget class="QMainWindow" name="main_ui">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="windowTitle">
+       <string>windowTitle</string>
+      </property>
+      <widget class="QWidget" name="central_widget">
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
+            <item>
+             <widget class="QLabel" name="lbl_pixmap">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="sb_choice"/>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="cb_autoscale">
+                <property name="text">
+                 <string>Autoskalierung</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_connect">
+                <property name="text">
+                 <string>CONNECT</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="Settings" name="settings" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>330</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <layoutdefault spacing="6" margin="11"/>
+     <customwidgets>
+      <customwidget>
+       <class>Settings</class>
+       <extends>QWidget</extends>
+       <header>settings.settings</header>
+       <container>1</container>
+      </customwidget>
+     </customwidgets>
+     <resources/>
+     <connections/>
+    </ui>
+  learner_created: false
+- name: add_ons/fps.py
+  visible: true
+  text: |-
+    import time
+
+    import numpy as np
+
+
+    class Fps:
+        def __init__(self, estimaeted_fps=30.0, nr_of_avg_frames=50):
+            self.ctr = 0
+            self.time = time.time()
+            self.time_old = time.time()
+            self.nr_of_avg_frames = nr_of_avg_frames
+            self.estimaeted_fps = estimaeted_fps
+            self.time_array = None
+            self.reset()
+            self.fps = 1 / (np.mean(self.time_array) + 0.00001)
+
+        def reset(self):
+            self.time_array = np.ones(self.nr_of_avg_frames) * 1 / self.estimaeted_fps
+
+        def update(self):
+            self.time_array[int(self.ctr)] = time.time() - self.time_old
+            self.time_old = time.time()
+            self.ctr += 1
+            if self.ctr > (self.nr_of_avg_frames - 1):
+                self.ctr = 0
+            self.fps = 1 / (np.mean(self.time_array) + 0.00001)
+
+        def delay(self):
+            time.sleep(1/self.fps)
+  learner_created: false
+- name: fps.py
+  visible: true
+  text: |-
+    import time
+
+    import numpy as np
+
+
+    class Fps:
+        def __init__(self, estimaeted_fps=30.0, nr_of_avg_frames=50):
+            self.ctr = 0
+            self.time = time.time()
+            self.time_old = time.time()
+            self.time_old_delay = time.time()
+            self.nr_of_avg_frames = nr_of_avg_frames
+            self.estimaeted_fps = estimaeted_fps
+            self.time_array = None
+            self.reset()
+            self.fps = 1 / (np.mean(self.time_array) + 0.00001)
+
+        def reset(self):
+            self.time_array = np.ones(self.nr_of_avg_frames) * 1 / self.estimaeted_fps
+
+        def update(self):
+            self.time_array[int(self.ctr)] = time.time() - self.time_old
+            self.time_old = time.time()
+            self.ctr += 1
+            if self.ctr > (self.nr_of_avg_frames - 1):
+                self.ctr = 0
+            self.fps = 1 / (np.mean(self.time_array) + 0.00001)
+
+        def delay(self):
+            dt = time.time() - self.time_old_delay
+            self.time_old_delay = time.time()
+            sleep_time = (1 / self.fps) - dt
+            if sleep_time > 0.0:
+                time.sleep(sleep_time)
+  learner_created: false
+- name: build_ui.py
+  visible: true
+  text: |
+    from qtpy import uic
+
+    uic.compileUiDir('ui')
+    uic.compileUiDir('settings/ui')
+    print('done')
+  learner_created: false
+- name: assets/image/camoffline.png
+  visible: true
+  learner_created: false
+- name: colors_and_fonts.py
+  visible: true
+  text: |-
+    import cv2
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    WHITE = (255, 255, 255)
+    WHITE_ = 255
+    RED = (0, 0, 255)
+    GREEN = (0, 255, 0)
+    YELLOW = (0, 255, 255)
+  learner_created: false
+- name: settings/settings.py
+  visible: true
+  text: |-
+    from PyQt5.QtCore import pyqtSignal
+    from PyQt5.QtWidgets import QWidget
+    from object_follower import ObjectFollower
+    from .ui.settings_ui import Ui_settings
+
+
+    class Settings(QWidget):
+        """Subwidget in welchem die Funtkionskapselung exemplarisch aufgezeigt wird."""
+        event_settings = pyqtSignal(object)
+
+        def __init__(self, parent):
+            super().__init__(parent)
+            self.object_follower: ObjectFollower = None
+            self.ui = Ui_settings()
+            self.ui.setupUi(self)
+            self.value_change_connected = False
+            self.ui.cb_detail.setChecked(True)
+
+            self.ui.btn_rot.clicked.connect(self.on_button_clicked)
+            self.ui.btn_gruen.clicked.connect(self.on_button_clicked)
+            self.ui.btn_blau.clicked.connect(self.on_button_clicked)
+            self.ui.btn_gelb.clicked.connect(self.on_button_clicked)
+            self.ui.btn_weiss.clicked.connect(self.on_button_clicked)
+
+        def on_button_clicked(self):
+            obj = self.sender()
+            obj_name = obj.objectName()
+
+            if   obj_name == 'btn_rot' :  self.object_follower.color_range_preset('ROT')
+            elif obj_name == 'btn_gruen': self.object_follower.color_range_preset('GRUEN')
+            elif obj_name == 'btn_blau':  self.object_follower.color_range_preset('BLAU')
+            elif obj_name == 'btn_gelb':  self.object_follower.color_range_preset('GELB')
+            elif obj_name == 'btn_weiss': self.object_follower.color_range_preset('WEISS')
+
+            self.get_values_from_instance()
+
+        def connect_value_change_event(self):
+            self.ui.slider_blur.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_hmin.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_hmax.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_smin.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_smax.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_vmin.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_vmax.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_erode.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_dilate.valueChanged.connect(self.on_slider_value_changed)
+            self.ui.slider_area.valueChanged.connect(self.on_slider_value_changed)
+            self.value_change_connected = True
+
+        def disconnect_value_change_event(self):
+            if self.value_change_connected:
+                self.ui.slider_blur.valueChanged.disconnect()
+                self.ui.slider_hmin.valueChanged.disconnect()
+                self.ui.slider_hmax.valueChanged.disconnect()
+                self.ui.slider_smin.valueChanged.disconnect()
+                self.ui.slider_smax.valueChanged.disconnect()
+                self.ui.slider_vmin.valueChanged.disconnect()
+                self.ui.slider_vmax.valueChanged.disconnect()
+                self.ui.slider_erode.valueChanged.disconnect()
+                self.ui.slider_dilate.valueChanged.disconnect()
+                self.ui.slider_area.valueChanged.disconnect()
+            self.value_change_connected = False
+
+        def on_slider_value_changed(self):
+            self.set_values_to_instance()
+
+        def set_values_to_instance(self):
+            self.object_follower.blur_kernel_size[0] = self.ui.slider_blur.value() * 2 + 1
+            self.object_follower.blur_kernel_size[1] = self.ui.slider_blur.value() * 2 + 1
+
+            self.object_follower.color_hsv_limit_min[0] = self.ui.slider_hmin.value()
+            self.object_follower.color_hsv_limit_min[1] = self.ui.slider_smin.value()
+            self.object_follower.color_hsv_limit_min[2] = self.ui.slider_vmin.value()
+            self.object_follower.color_hsv_limit_max[0] = self.ui.slider_hmax.value()
+            self.object_follower.color_hsv_limit_max[1] = self.ui.slider_smax.value()
+            self.object_follower.color_hsv_limit_max[2] = self.ui.slider_vmax.value()
+
+            self.object_follower.erode_iterations = self.ui.slider_erode.value()
+            self.object_follower.dilate_iterations = self.ui.slider_dilate.value()
+            self.object_follower.contour_area = self.ui.slider_area.value()
+
+            self.set_values_to_labels()
+
+        def get_values_from_instance(self):
+            self.disconnect_value_change_event()
+
+            self.ui.slider_blur.setValue((self.object_follower.blur_kernel_size[0]-1)/2)
+
+            self.ui.slider_hmin.setValue(self.object_follower.color_hsv_limit_min[0])
+            self.ui.slider_smin.setValue(self.object_follower.color_hsv_limit_min[1])
+            self.ui.slider_vmin.setValue(self.object_follower.color_hsv_limit_min[2])
+            self.ui.slider_hmax.setValue(self.object_follower.color_hsv_limit_max[0])
+            self.ui.slider_smax.setValue(self.object_follower.color_hsv_limit_max[1])
+            self.ui.slider_vmax.setValue(self.object_follower.color_hsv_limit_max[2])
+
+            self.ui.slider_erode.setValue(self.object_follower.erode_iterations)
+            self.ui.slider_dilate.setValue(self.object_follower.dilate_iterations)
+            self.ui.slider_area.setValue(self.object_follower.contour_area)
+
+            self.connect_value_change_event()
+
+            self.set_values_to_labels()
+
+        def set_values_to_labels(self):
+            self.ui.lbl_blur.setText(f'Blur: {self.object_follower.blur_kernel_size[0]:2d}')
+
+            self.ui.lbl_hmin.setText(f'Hmin: {self.object_follower.color_hsv_limit_min[0]:3d}')
+            self.ui.lbl_smin.setText(f'Smin: {self.object_follower.color_hsv_limit_min[1]:3d}')
+            self.ui.lbl_vmin.setText(f'Vmin: {self.object_follower.color_hsv_limit_min[2]:3d}')
+
+            self.ui.lbl_hmax.setText(f'Hmax: {self.object_follower.color_hsv_limit_max[0]:3d}')
+            self.ui.lbl_smax.setText(f'Smax: {self.object_follower.color_hsv_limit_max[1]:3d}')
+            self.ui.lbl_vmax.setText(f'Vmax: {self.object_follower.color_hsv_limit_max[2]:3d}')
+
+            self.ui.lbl_erode.setText(f'Erode: {self.object_follower.erode_iterations:3d}')
+            self.ui.lbl_dilate.setText(f'Dilate: {self.object_follower.dilate_iterations:3d}')
+            self.ui.lbl_area.setText(f'Fläche: {self.object_follower.contour_area:3d}')
+
+    """
+    self.event_display.emit('MEASUREMENT_SETTINGS')
+    self.ui.display.event_display.connect(self.on_event_display)
+    def on_event_display(self, event):
+        if isinstance(event, str):
+            self.statusbar.status_message(event)
+    """
+  learner_created: false
+- name: settings/ui/settings_ui.ui
+  visible: true
+  text: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <ui version="4.0">
+     <class>settings</class>
+     <widget class="QWidget" name="settings">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>330</width>
+        <height>834</height>
+       </rect>
+      </property>
+      <property name="windowTitle">
+       <string>Form</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,0,0,0,0,0,0">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Einstellungen</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_blur">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Blur: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSlider" name="slider_blur">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+            <property name="singleStep">
+             <number>1</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_area">
+            <property name="text">
+             <string>Fläche: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSlider" name="slider_area">
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+            <property name="pageStep">
+             <number>100</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>HSV</string>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+         <layout class="QFormLayout" name="formLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_hmin">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>H min: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSlider" name="slider_hmin">
+            <property name="maximum">
+             <number>127</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_hmax">
+            <property name="text">
+             <string>H: max</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSlider" name="slider_hmax">
+            <property name="maximum">
+             <number>127</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lbl_smin">
+            <property name="text">
+             <string>S min: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSlider" name="slider_smin">
+            <property name="maximum">
+             <number>255</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="lbl_smax">
+            <property name="text">
+             <string>S max: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QSlider" name="slider_smax">
+            <property name="maximum">
+             <number>255</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="lbl_vmin">
+            <property name="text">
+             <string>V min:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSlider" name="slider_vmin">
+            <property name="maximum">
+             <number>255</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="lbl_vmax">
+            <property name="text">
+             <string>V max: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSlider" name="slider_vmax">
+            <property name="maximum">
+             <number>255</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Morphologische Operationen</string>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="1">
+           <widget class="QSlider" name="slider_erode">
+            <property name="maximum">
+             <number>15</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_erode">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Erode: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_dilate">
+            <property name="text">
+             <string>Dilate:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSlider" name="slider_dilate">
+            <property name="maximum">
+             <number>15</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Voreinstellungen</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="btn_rot">
+            <property name="text">
+             <string>ROT</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_gruen">
+            <property name="text">
+             <string>GRÜN</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_blau">
+            <property name="text">
+             <string>BLAU</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_gelb">
+            <property name="text">
+             <string>GELB</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_weiss">
+            <property name="text">
+             <string>WEISS</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QCheckBox" name="cb_detail">
+            <property name="text">
+             <string>Detailansicht</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <resources/>
+     <connections/>
+    </ui>
+  learner_created: false
+- name: settings/ui/settings_ui.py
+  visible: true
+  text: |+
+    # -*- coding: utf-8 -*-
+
+    # Form implementation generated from reading ui file 'settings/ui\settings_ui.ui'
+    #
+    # Created by: PyQt5 UI code generator 5.12
+    #
+    # WARNING! All changes made in this file will be lost!
+
+    from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+    class Ui_settings(object):
+        def setupUi(self, settings):
+            settings.setObjectName("settings")
+            settings.resize(330, 834)
+            self.verticalLayout_3 = QtWidgets.QVBoxLayout(settings)
+            self.verticalLayout_3.setContentsMargins(-1, 0, -1, -1)
+            self.verticalLayout_3.setObjectName("verticalLayout_3")
+            self.groupBox_2 = QtWidgets.QGroupBox(settings)
+            self.groupBox_2.setObjectName("groupBox_2")
+            self.formLayout_3 = QtWidgets.QFormLayout(self.groupBox_2)
+            self.formLayout_3.setObjectName("formLayout_3")
+            self.lbl_blur = QtWidgets.QLabel(self.groupBox_2)
+            self.lbl_blur.setMinimumSize(QtCore.QSize(100, 0))
+            self.lbl_blur.setObjectName("lbl_blur")
+            self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.lbl_blur)
+            self.slider_blur = QtWidgets.QSlider(self.groupBox_2)
+            self.slider_blur.setMinimum(0)
+            self.slider_blur.setMaximum(9)
+            self.slider_blur.setSingleStep(1)
+            self.slider_blur.setPageStep(1)
+            self.slider_blur.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_blur.setObjectName("slider_blur")
+            self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.slider_blur)
+            self.lbl_area = QtWidgets.QLabel(self.groupBox_2)
+            self.lbl_area.setObjectName("lbl_area")
+            self.formLayout_3.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lbl_area)
+            self.slider_area = QtWidgets.QSlider(self.groupBox_2)
+            self.slider_area.setMaximum(10000)
+            self.slider_area.setSingleStep(100)
+            self.slider_area.setPageStep(100)
+            self.slider_area.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_area.setObjectName("slider_area")
+            self.formLayout_3.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.slider_area)
+            self.verticalLayout_3.addWidget(self.groupBox_2)
+            spacerItem = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+            self.verticalLayout_3.addItem(spacerItem)
+            self.groupBox = QtWidgets.QGroupBox(settings)
+            self.groupBox.setFlat(False)
+            self.groupBox.setObjectName("groupBox")
+            self.formLayout_4 = QtWidgets.QFormLayout(self.groupBox)
+            self.formLayout_4.setObjectName("formLayout_4")
+            self.lbl_hmin = QtWidgets.QLabel(self.groupBox)
+            self.lbl_hmin.setMinimumSize(QtCore.QSize(100, 0))
+            self.lbl_hmin.setObjectName("lbl_hmin")
+            self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.lbl_hmin)
+            self.slider_hmin = QtWidgets.QSlider(self.groupBox)
+            self.slider_hmin.setMaximum(127)
+            self.slider_hmin.setPageStep(1)
+            self.slider_hmin.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_hmin.setObjectName("slider_hmin")
+            self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.slider_hmin)
+            self.lbl_hmax = QtWidgets.QLabel(self.groupBox)
+            self.lbl_hmax.setObjectName("lbl_hmax")
+            self.formLayout_4.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lbl_hmax)
+            self.slider_hmax = QtWidgets.QSlider(self.groupBox)
+            self.slider_hmax.setMaximum(127)
+            self.slider_hmax.setPageStep(1)
+            self.slider_hmax.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_hmax.setObjectName("slider_hmax")
+            self.formLayout_4.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.slider_hmax)
+            self.lbl_smin = QtWidgets.QLabel(self.groupBox)
+            self.lbl_smin.setObjectName("lbl_smin")
+            self.formLayout_4.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.lbl_smin)
+            self.slider_smin = QtWidgets.QSlider(self.groupBox)
+            self.slider_smin.setMaximum(255)
+            self.slider_smin.setPageStep(1)
+            self.slider_smin.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_smin.setObjectName("slider_smin")
+            self.formLayout_4.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.slider_smin)
+            self.lbl_smax = QtWidgets.QLabel(self.groupBox)
+            self.lbl_smax.setObjectName("lbl_smax")
+            self.formLayout_4.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.lbl_smax)
+            self.slider_smax = QtWidgets.QSlider(self.groupBox)
+            self.slider_smax.setMaximum(255)
+            self.slider_smax.setPageStep(1)
+            self.slider_smax.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_smax.setObjectName("slider_smax")
+            self.formLayout_4.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.slider_smax)
+            self.lbl_vmin = QtWidgets.QLabel(self.groupBox)
+            self.lbl_vmin.setObjectName("lbl_vmin")
+            self.formLayout_4.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.lbl_vmin)
+            self.slider_vmin = QtWidgets.QSlider(self.groupBox)
+            self.slider_vmin.setMaximum(255)
+            self.slider_vmin.setPageStep(1)
+            self.slider_vmin.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_vmin.setObjectName("slider_vmin")
+            self.formLayout_4.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.slider_vmin)
+            self.lbl_vmax = QtWidgets.QLabel(self.groupBox)
+            self.lbl_vmax.setObjectName("lbl_vmax")
+            self.formLayout_4.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.lbl_vmax)
+            self.slider_vmax = QtWidgets.QSlider(self.groupBox)
+            self.slider_vmax.setMaximum(255)
+            self.slider_vmax.setPageStep(1)
+            self.slider_vmax.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_vmax.setObjectName("slider_vmax")
+            self.formLayout_4.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.slider_vmax)
+            self.verticalLayout_3.addWidget(self.groupBox)
+            spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+            self.verticalLayout_3.addItem(spacerItem1)
+            self.groupBox_4 = QtWidgets.QGroupBox(settings)
+            self.groupBox_4.setFlat(False)
+            self.groupBox_4.setCheckable(False)
+            self.groupBox_4.setObjectName("groupBox_4")
+            self.formLayout_2 = QtWidgets.QFormLayout(self.groupBox_4)
+            self.formLayout_2.setObjectName("formLayout_2")
+            self.slider_erode = QtWidgets.QSlider(self.groupBox_4)
+            self.slider_erode.setMaximum(15)
+            self.slider_erode.setPageStep(1)
+            self.slider_erode.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_erode.setObjectName("slider_erode")
+            self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.slider_erode)
+            self.lbl_erode = QtWidgets.QLabel(self.groupBox_4)
+            self.lbl_erode.setMinimumSize(QtCore.QSize(100, 0))
+            self.lbl_erode.setObjectName("lbl_erode")
+            self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.lbl_erode)
+            self.lbl_dilate = QtWidgets.QLabel(self.groupBox_4)
+            self.lbl_dilate.setObjectName("lbl_dilate")
+            self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lbl_dilate)
+            self.slider_dilate = QtWidgets.QSlider(self.groupBox_4)
+            self.slider_dilate.setMaximum(15)
+            self.slider_dilate.setPageStep(1)
+            self.slider_dilate.setOrientation(QtCore.Qt.Horizontal)
+            self.slider_dilate.setObjectName("slider_dilate")
+            self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.slider_dilate)
+            self.verticalLayout_3.addWidget(self.groupBox_4)
+            spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+            self.verticalLayout_3.addItem(spacerItem2)
+            self.groupBox_5 = QtWidgets.QGroupBox(settings)
+            self.groupBox_5.setObjectName("groupBox_5")
+            self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox_5)
+            self.verticalLayout.setObjectName("verticalLayout")
+            self.btn_rot = QtWidgets.QPushButton(self.groupBox_5)
+            self.btn_rot.setObjectName("btn_rot")
+            self.verticalLayout.addWidget(self.btn_rot)
+            self.btn_gruen = QtWidgets.QPushButton(self.groupBox_5)
+            self.btn_gruen.setObjectName("btn_gruen")
+            self.verticalLayout.addWidget(self.btn_gruen)
+            self.btn_blau = QtWidgets.QPushButton(self.groupBox_5)
+            self.btn_blau.setObjectName("btn_blau")
+            self.verticalLayout.addWidget(self.btn_blau)
+            self.btn_gelb = QtWidgets.QPushButton(self.groupBox_5)
+            self.btn_gelb.setObjectName("btn_gelb")
+            self.verticalLayout.addWidget(self.btn_gelb)
+            self.btn_weiss = QtWidgets.QPushButton(self.groupBox_5)
+            self.btn_weiss.setObjectName("btn_weiss")
+            self.verticalLayout.addWidget(self.btn_weiss)
+            self.verticalLayout_3.addWidget(self.groupBox_5)
+            spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+            self.verticalLayout_3.addItem(spacerItem3)
+            self.groupBox_3 = QtWidgets.QGroupBox(settings)
+            self.groupBox_3.setTitle("")
+            self.groupBox_3.setObjectName("groupBox_3")
+            self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox_3)
+            self.verticalLayout_2.setObjectName("verticalLayout_2")
+            self.cb_detail = QtWidgets.QCheckBox(self.groupBox_3)
+            self.cb_detail.setObjectName("cb_detail")
+            self.verticalLayout_2.addWidget(self.cb_detail)
+            self.verticalLayout_3.addWidget(self.groupBox_3)
+
+            self.retranslateUi(settings)
+            QtCore.QMetaObject.connectSlotsByName(settings)
+
+        def retranslateUi(self, settings):
+            _translate = QtCore.QCoreApplication.translate
+            settings.setWindowTitle(_translate("settings", "Form"))
+            self.groupBox_2.setTitle(_translate("settings", "Einstellungen"))
+            self.lbl_blur.setText(_translate("settings", "Blur: "))
+            self.lbl_area.setText(_translate("settings", "Fläche: "))
+            self.groupBox.setTitle(_translate("settings", "HSV"))
+            self.lbl_hmin.setText(_translate("settings", "H min: "))
+            self.lbl_hmax.setText(_translate("settings", "H: max"))
+            self.lbl_smin.setText(_translate("settings", "S min: "))
+            self.lbl_smax.setText(_translate("settings", "S max: "))
+            self.lbl_vmin.setText(_translate("settings", "V min:"))
+            self.lbl_vmax.setText(_translate("settings", "V max: "))
+            self.groupBox_4.setTitle(_translate("settings", "Morphologische Operationen"))
+            self.lbl_erode.setText(_translate("settings", "Erode: "))
+            self.lbl_dilate.setText(_translate("settings", "Dilate:"))
+            self.groupBox_5.setTitle(_translate("settings", "Voreinstellungen"))
+            self.btn_rot.setText(_translate("settings", "ROT"))
+            self.btn_gruen.setText(_translate("settings", "GRÜN"))
+            self.btn_blau.setText(_translate("settings", "BLAU"))
+            self.btn_gelb.setText(_translate("settings", "GELB"))
+            self.btn_weiss.setText(_translate("settings", "WEISS"))
+            self.cb_detail.setText(_translate("settings", "Detailansicht"))
+
+
+  learner_created: false
+- name: img/result_stacked.png
+  visible: true
+  learner_created: false
+- name: img/box_with_bullets.png
+  visible: true
+  learner_created: false
+- name: img/result.png
+  visible: true
+  learner_created: false
+- name: img/print_screen.png
+  visible: true
+  learner_created: false
+- name: object_follower.py
+  visible: true
+  text: |
+    import cv2
+    import numpy as np
+    import colors_and_fonts as cf
+    import imutils
+
+    class ObjectFollower:
+        def __init__(self):
+            self.image = None
+            self.flipped = None
+            self.cropped = None
+            self.blurred = None
+            self.image_hsv = None
+            self.threshold_color = None
+            self.eroded = None
+            self.dilated = None
+            self.contours = None
+            self.result = None
+            self.result_stacked = None
+            self.resized = None
+
+            self.blur_kernel_size = [15, 15]
+            self.erode_iterations = 4
+            self.dilate_iterations = 8
+            self.contour_area = 3500
+            self.color_hsv_limit_min = [0, 0, 0]  # Blau min
+            self.color_hsv_limit_max = [0, 0, 0]  # Blau max
+
+            self.bullets = None
+            self.flip_direction = None
+            self.scale_factor = 1.0
+
+        def color_range_preset(self, name=''):
+            if name == 'ROT':
+                self.color_hsv_limit_min = [  0, 178,  50]
+                self.color_hsv_limit_max = [ 10, 255, 255]
+            elif name == 'GRUEN':
+                self.color_hsv_limit_min = [ 30,  91,  50]
+                self.color_hsv_limit_max = [ 75, 255, 255]
+            elif name == 'BLAU':
+                self.color_hsv_limit_min = [95, 142, 100]
+                self.color_hsv_limit_max = [113, 255, 255]
+            elif name == 'GELB':
+                self.color_hsv_limit_min = [ 12, 100, 100]
+                self.color_hsv_limit_max = [ 39, 255, 255]
+            elif name == 'WEISS':
+                self.color_hsv_limit_min = [  0,   0, 185]
+                self.color_hsv_limit_max = [127,  31, 255]
+
+        def update(self, frame=None):
+            # lade Bild von der Datei oder einem Stream in das NumPy Array
+            if frame is None:
+                image = cv2.imread('img/box_with_bullets.png')
+            else:
+                image = frame.copy()
+
+            # Bildspiegelung
+            if self.flip_direction == 'H':
+                self.flipped = cv2.flip(image, 1)  # Spiegelung horizontal
+            elif self.flip_direction == 'V':
+                self.flipped = cv2.flip(image, 0)  # Spiegelung vertikal
+            elif self.flip_direction == 'HV':
+                self.flipped = cv2.flip(image, -1)  # Spiegelung horizontal und vertikal
+            else:
+                self.flipped = image  # keine Spiegelung
+
+            # Zuschnitt des Bildes
+            self.cropped = self.flipped[:, :]
+
+            # Gaussian Blurfilter
+            self.blurred = cv2.GaussianBlur(self.cropped, tuple(self.blur_kernel_size), 0)
+
+            # Konvertierung in den HSV Farbraum
+            self.image_hsv = cv2.cvtColor(self.blurred, cv2.COLOR_BGR2HSV)
+
+            # Farbselektion
+            self.threshold_color = cv2.inRange(self.image_hsv,
+                                               tuple(self.color_hsv_limit_min),
+                                               tuple(self.color_hsv_limit_max))
+
+            # Morphologische Operationen
+            self.eroded = cv2.erode(self.threshold_color, None, iterations=self.erode_iterations)
+            self.dilated = cv2.dilate(self.eroded, None, iterations=self.dilate_iterations)
+
+            # finde alle äusseren Konturen und zeichne diese in das Bild
+            cnts, hir = cv2.findContours(self.dilated.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            self.contours = self.cropped.copy()
+            cv2.drawContours(self.contours, cnts, -1, (0, 255, 0), 2)
+            # Ermittlung der Massezentren
+            self.bullets = []
+            for (i, c) in enumerate(cnts):
+                M = cv2.moments(c)
+                cX = int(M['m10'] / M['m00'])
+                cY = int(M['m01'] / M['m00'])
+                # Fläche und Umfang
+                area = cv2.contourArea(c)
+                perimeter = cv2.arcLength(c, True)
+                # print(f'Contour #{(i + 1):d} -- area: {area:.2f}, perimeter: {perimeter:.2f}')
+                if area > self.contour_area:  # Erfassung der Zentrumspunkte in Abhängikeit von Parametern
+                    ((x, y), radius) = cv2.minEnclosingCircle(c)
+                    # cv2.circle(self.contours, (cX, cY), 10, cf.RED, -1)
+                    # cv2.circle(self.contours, (cX, cY), int(radius), cf.RED, 2)
+                    self.bullets.append((cX, cY, radius))
+
+            # print(self.bullets)
+
+            self.result = self.cropped.copy()
+            for (i, bullet) in enumerate(self.bullets):
+                    cv2.circle(self.result, (bullet[0], bullet[1]), 10, cf.RED, -1)
+                    cv2.circle(self.result, (bullet[0], bullet[1]), int(bullet[2]), cf.RED, 2)
+                    self.result = cv2.putText(self.result, f'x/y = {bullet[0]:3d}/{bullet[1]:3d} | r = {int(bullet[2]):3d} '
+                                                           f'| A = {int(area):5d}', (25, (self.result.shape[0]-10-i*35)),
+                                              cf.font, 0.7, cf.RED, 2, cv2.LINE_AA)
+
+            # Zusammenfassung der Ausganslage und der Bearbeitung
+            self.cropped = cv2.putText(self.cropped, 'Original', (25, 25), cf.font, 0.8, cf.RED, 2, cv2.LINE_AA)
+            self.blurred = cv2.putText(self.blurred, 'Unschaerfe', (25, 25), cf.font, 0.8, cf.RED, 2, cv2.LINE_AA)
+            self.image_hsv = cv2.putText(self.image_hsv, 'HSV Transformation', (25, 25), cf.font, 0.8, cf.RED, 2, cv2.LINE_AA)
+            self.contours = cv2.putText(self.contours, 'aeussere Konturen', (25, 25), cf.font, 0.8, cf.RED, 2, cv2.LINE_AA)
+            self.result = cv2.putText(self.result, 'Resultat', (25, 25), cf.font, 0.8, cf.RED, 2, cv2.LINE_AA)
+
+            self.threshold_color = cv2.putText(self.threshold_color, 'Farbselektion', (25, 25), cf.font, 0.8, cf.WHITE, 2, cv2.LINE_AA)
+            self.eroded = cv2.putText(self.eroded, 'Reduzierung', (25, 25), cf.font, 0.8, cf.WHITE, 2, cv2.LINE_AA)
+            self.dilated = cv2.putText(self.dilated, 'Erweiterung', (25, 25), cf.font, 0.8, cf.WHITE, 2, cv2.LINE_AA)
+
+            # Umwandlung eines einkanaligen Bildes in ein dreikanaliges
+            threshold_color_bgr = cv2.merge([self.threshold_color, self.threshold_color, self.threshold_color])
+            eroded_bgr = cv2.merge([self.eroded, self.eroded, self.eroded])
+            dilated_bgr = cv2.merge([self.dilated, self.dilated, self.dilated])
+
+            result_1 = np.hstack([self.cropped, self.blurred, self.image_hsv, threshold_color_bgr])
+            result_2 = np.hstack([eroded_bgr, dilated_bgr, self.contours, self.result])
+            self.result_stacked = np.vstack([result_1, result_2])
+
+        def resize_result_stacked(self, scale_factor=None):
+            if scale_factor is not None:
+                self.scale_factor = scale_factor
+
+            width = int(float(self.result_stacked.shape[1]) * self.scale_factor)
+            self.resized = imutils.resize(self.result_stacked, width=width)
+            return self.resized
+
+        def show_on_screen(self):
+            self.resize_result_stacked()
+            # Anzeige auf dem Bildschirm
+            cv2.imshow('Ausgabe', self.resized)
+            cv2.moveWindow('Ausgabe', 100, 100)
+            cv2.waitKey(0)
+
+        def write_image_to_file(self, file_path_result=None, file_path_stacked=None):
+            # schreibe die Bilder in eine Datei
+            if file_path_result is None:
+                cv2.imwrite('img/result.png', self.result[0:-2, 0:-2])
+
+            if file_path_stacked is None:
+                cv2.imwrite('img/result_stacked.png', self.result_stacked[0:-2, 0:-2])
+
+
+    if __name__ == '__main__':
+        object_follower = ObjectFollower()
+        object_follower.color_range_preset('BLAU')
+        object_follower.flip_direction = 'V'
+        object_follower.scale_factor = 0.75
+        object_follower.update()
+        object_follower.write_image_to_file()
+        object_follower.show_on_screen()
+  learner_created: false
+- name: main.pyw
+  visible: true
+  text: |
+    # main.pyw
+    import sys
+    import cv2
+    import style
+    from PyQt5.QtCore import QSize, Qt, QTimer
+    from PyQt5.QtGui import QIcon, QPixmap, QImage
+    from PyQt5.QtWidgets import QMainWindow, QApplication
+    from add_ons.fps import Fps
+    from ui.main_ui import Ui_main_ui
+    from object_follower import ObjectFollower
+
+    # 4k display with high dpi resolution
+    if hasattr(Qt, 'AA_EnableHighDpiScaling'):
+        QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
+    if hasattr(Qt, 'AA_UseHighDpiPixmaps'):
+        QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
+
+
+    class Main(QMainWindow):
+        def __init__(self, parent=None):
+            QMainWindow.__init__(self, parent)
+
+            self.ui = Ui_main_ui()
+            self.ui.setupUi(self)
+            self.setWindowTitle('Übung Objektfolger mit PyQt5')
+            # self.move(-5, 0)
+            self.resize(1900, 650)
+            self.setMinimumSize(QSize(100, 50))
+
+            self.frame = None
+            self.pixmap = None
+            self.frame_to_pixmap()
+
+            self.cap = None
+            self.timer = QTimer(self)
+            self.timer.timeout.connect(self.webcam_update_frame)
+            self.fps = Fps()
+            self.connected = False
+
+            # Instanzierung der Objektfolgerklasse aus TA2
+            self.object_follower = ObjectFollower()
+            self.object_follower.color_range_preset('BLAU')
+            self.ui.settings.object_follower = self.object_follower
+            self.ui.settings.get_values_from_instance()
+
+            self.ui.cb_autoscale.setChecked(True)
+            self.ui.cb_autoscale.stateChanged.connect(self.show_pixmap)
+
+            self.ui.btn_connect.clicked.connect(self.webcam_start_stop)
+            self.ui.sb_choice.setValue(0)
+            # self.webcam_start_stop()
+
+        def webcam_start_stop(self):
+            """Starten und stoppen der Webcam"""
+            if self.connected:
+                self.webcam_stop()
+                self.ui.btn_connect.setText('CONNECT')
+                self.connected = False
+            else:
+                self.webcam_start()
+                self.ui.btn_connect.setText('DISCONNECT')
+                self.connected = True
+
+        def webcam_start(self):
+            """camera_nr = 0  # 0 = default, 1,2,3 = extra webcam"""
+            camera_nr = self.ui.sb_choice.value()
+            self.cap = cv2.VideoCapture(camera_nr, cv2.CAP_DSHOW)
+            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+            self.fps.reset()
+            self.timer.start(5)
+
+        def webcam_stop(self):
+            self.timer.stop()
+            self.cap = None
+
+            self.frame = None
+            self.frame_to_pixmap()
+
+        def webcam_update_frame(self):
+            """Auslesen des Kamerastreams"""
+            if self.cap is not None:
+                self.fps.update()
+                self.setWindowTitle(f'Übung Objektfolger mit PyQt5 | fps: {self.fps.fps:1.1f}')
+
+                ret, frame_webcam = self.cap.read()
+                if ret:
+                    frame_webcam = cv2.flip(frame_webcam, 1)  # -1, 0, 1 Rotation des Bildes
+                    self.object_follower.update(frame_webcam)
+                    if self.ui.settings.ui.cb_detail.isChecked():
+                        self.frame = self.object_follower.result_stacked
+                    else:
+                        self.frame = self.object_follower.result
+                    self.frame_to_pixmap()
+                else:
+                    print('ret is false')
+
+        def frame_to_pixmap(self):
+            """Konvertierung eines Frames von OpenCV nach einem Pixmap für PyQt5"""
+            if self.frame is None:
+                self.frame = cv2.imread('assets/image/camoffline.png')
+
+            qformat = QImage.Format_Indexed8  # single color image
+            if len(self.frame.shape) == 3:  # rows[0],cols[1],channels[2]
+                if (self.frame.shape[2]) == 4:  # alfa channel
+                    qformat = QImage.Format_RGBA8888
+                else:
+                    qformat = QImage.Format_RGB888
+
+            image = QImage(self.frame, self.frame.shape[1], self.frame.shape[0], self.frame.strides[0], qformat)
+            image = image.rgbSwapped()  # open_cv works by default in a bgr colorspace
+            self.pixmap = QPixmap.fromImage(image)
+            self.show_pixmap()
+
+        def show_pixmap(self):
+            """Anzeige des Pixmap in einem Labelwidget. In Abhängigkeit des """
+            if self.ui.cb_autoscale.isChecked():
+                pixmap_resized = self.pixmap.scaled(self.ui.lbl_pixmap.width(),
+                                                    self.ui.lbl_pixmap.height(),
+                                                    Qt.KeepAspectRatio)  # Qt.KeepAspectRatioByExpanding
+                self.ui.lbl_pixmap.setPixmap(pixmap_resized)
+            else:
+                self.ui.lbl_pixmap.setPixmap(self.pixmap)
+                # self.resize(self.pixmap.width(), self.pixmap.height())
+
+        def on_cb_changed(self):
+            """Checkbox Event Autoskalierung"""
+            self.show_pixmap()
+
+        def resizeEvent(self, *args):
+            """Event bei einer Grössenänderung des Fensters"""
+            super().resizeEvent(*args)
+            self.show_pixmap()
+
+        def keyPressEvent(self, event):
+            """Event Erfassung und Auswertung der gedrückten Tasten"""
+            super().keyPressEvent(event)
+            # print(event.key())
+            if event.key() == Qt.Key_Q:
+                self.close()
+            elif event.key() == Qt.Key_O:
+                self.webcam_start()
+            elif event.key() == Qt.Key_C:
+                self.webcam_stop()
+            elif event.key() == Qt.Key_S:
+                if self.connected:
+                    cv2.imwrite('assets/image/image.png', self.frame)
+                    print('frame saved')
+
+        def on_main_started(self):
+            """Aufruf der Funktion erfolgt nach vollständiger Initialisierung."""
+            self.show_pixmap()
+
+
+    def except_hook(cls, exception, traceback):
+        """Fehlerausgabe in der Python-Konsole anstelle des Terminals."""
+        sys.__excepthook__(cls, exception, traceback)
+
+
+    if __name__ == '__main__':
+        sys.excepthook = except_hook
+        app = QApplication(sys.argv)
+        app.setWindowIcon(QIcon('assets/icon/abbts.ico'))
+        style.set_style(app)
+        main = Main()
+        main.show()
+        t = QTimer()
+        t.singleShot(100, main.on_main_started)
+        sys.exit(app.exec_())
+  learner_created: false
+status: Solved
+record: -1
